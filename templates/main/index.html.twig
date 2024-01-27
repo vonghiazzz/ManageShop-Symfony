@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home | Shopinist{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/homepage.css') }}" />
+   
+{% endblock %}
+
+{% block body %}
+{% include 'header.html.twig' %}
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6" id="article-1">
+                        <p>
+                            <b>Shop Women's</b>
+                        </p>
+                        <a href="{{path('app_women')}}"><span data-attr="Shop">Shop</span><span data-attr="Now">Now</span></a>
+                    </div>
+                    <div class="col-md-6 pt-5">
+                        <img class="video-1" src="../images/pexels-vitória-santos-3050943.jpg" alt="">
+                        <!-- <video class="video-1" autoplay muted loop>
+                            <source src="../images/pexels-anastasia-shuraeva-8032949.mp4" type="video/mp4">
+                        </video> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="video-2" src="../images/pexels-marlene-leppänen-1183266.jpg" alt="">
+                        <!-- <video class="video-2" autoplay muted loop>
+                            <source src="../images/pexels-cottonbro-10678762.mp4" type="video/mp4">
+                        </video> -->
+                    </div>
+                    <div class="col-md-6" id="article-2">
+                        <p>
+                            <b>Shop Men's</b>
+                        </p>
+                        <a href="{{path('app_men')}}"><span data-attr="Shop">Shop</span><span data-attr="Now">Now</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+        <style>
+        .view-click a{
+            color: #222222;
+        }
+        </style>
+            <div class="container">
+                <div class="row pt-5">
+                    <h2 class="title">TRENDING NOW</h2>
+                    <div class="divider"></div>
+                    {% for t in findTrend %}
+                    {% set img = t.image %}
+                        <div class="col-md-3 col-sm-6">
+                        <div class="product-box">
+                            <img class="product-img" src="{{asset('uploads/'~img)}}" alt="">
+                            <div class="view-click"><a href="{{path('show_detail', {'id':t.id})}}"><span class="view-link">View Details</span></a></div>
+                            <h2 class="product-title">{{t.product_name}}</h2>
+                            <div class="product-price">{{t.price}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="col-12 text-center pt-3">
+                        <a href="{{path('show_trend')}}"><button class="shop-trending-btn">Shop All</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="pt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="shop-text">
+                        <p class="animate-text">
+                            <span>Welcome to Shopinist!</span>
+                            <span>Your one-stop destination for all your clothes</span>
+                            <span>we are dedicated to providing our customers with the highest quality products and exceptional customer service.</span>
+                            <span>Our knowledgeable and friendly staff are always on hand to help you find exactly what you're looking for.</span>
+                            <span>Discover Your Style with Shopinist - Your Ultimate Shopping Destination!</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="pt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="logo-titleWap">
+                        <h2 class="logo-link">Brands</h2>
+                    </div>
+                    <div class="logo-bar">
+                        <ul class="logo-list">
+                            {% for logo in brand %}
+                            {% set logo_img = logo.image %}
+                               <li><a href="{{path('app_product_brand', {'brand_id':logo.id})}}"><img src="{{asset('uploads/'~logo_img)}}" alt=""></a></li>
+                            {% endfor %}
+                            {# <li><a href=""><img src="../images/6a775f870fde948d44018facf29be321.svg" alt=""></a></li>
+                            <li><a href=""><img src="../images/C-logo.svg" alt=""></a></li>
+                            <li><a href=""><img src="../images/levis-logo.svg" alt=""></a></li>
+                            <li><a href=""><img src="../images/logo.svg" alt=""></a></li>
+                            <li><a href=""></a><img src="../images/Logos_Primary_Black_Small.svg" alt=""></li>
+                            <li><a href=""><img src="../images/icon-adidas-logo.svg" alt=""></a></li> #}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% include 'footer.html.twig' %}
+{% endblock %}
